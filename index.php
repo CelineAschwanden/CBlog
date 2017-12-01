@@ -74,19 +74,20 @@
     </div>
 
     <?php
-        $dbconnection = new PDO('mysql:host=10.20.16.102;dbname=ipadressen','DB_BLJ','BLJ12345l');
+        $dbconnection = new PDO('mysql:host=10.20.16.107;dbname=ipadressen','DB_BLJ','BLJ12345l');
         $stmt = $dbconnection->query("SELECT ip,home FROM t_ipadress order by ID");
         $ipArray = $stmt -> fetchAll();
     ?>
+    <?php if ($dbconnection !=false) {
 
-    <div id = "nav3">
+    echo ('<div id = "nav3">
         <nav>
             <ul>
-                <li id = "n3k1"><a href='#'>Alle BLJ Seiten</a>
+                <li id = "n3k1"><a href=\'#\'>Alle BLJ Seiten</a>
                     <ul>
                         <li><p><a href="http://<?php echo $ipArray[2][0]?><?php echo $ipArray[2][1] ?>">Fynnus Blogus</a></p>
                         </li>
-                        <li><p><a href="http://<?php echo $ipArray[1][0]?><?php echo $ipArray[1][1] ?>">Carolina's Blog</a></p>
+                        <li><p><a href="http://<?php echo $ipArray[1][0]?><?php echo $ipArray[1][1] ?>">Carolina\'s Blog</a></p>
                         </li>
                         <li><p><a href="http://<?php echo $ipArray[7][0]?><?php echo $ipArray[7][1] ?>">RBWS</a></p>
                         </li>
@@ -102,7 +103,37 @@
                 </li>
             </ul>
         </nav>
-    </div>
+    </div>');
+
+    } else {
+
+        echo ('<div id = "nav3">
+        <nav>
+            <ul>
+                <li id = "n3k1"><a href=\'#\'>Alle BLJ Seiten</a>
+                    <ul>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>');
+
+    } 
+    ?>
 
 </body>
 </html>

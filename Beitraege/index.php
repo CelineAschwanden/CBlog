@@ -80,49 +80,91 @@ s<!DOCTYPE html>
     </div>
 
     <?php
-    $dbconnection = new PDO('mysql:host=10.20.16.102;dbname=ipadressen','DB_BLJ','BLJ12345l');
-    $stmt = $dbconnection->query("SELECT ip,home FROM t_ipadress order by ID");
-    $ipArray = $stmt -> fetchAll();
-?>
+        $dbconnection = new PDO('mysql:host=10.20.16.107;dbname=ipadressen','DB_BLJ','BLJ12345l');
+        $stmt = $dbconnection->query("SELECT ip,home FROM t_ipadress order by ID");
+        $ipArray = $stmt -> fetchAll();
+    ?>
+    <?php if ($dbconnection !=false) {
 
-<div id = "nav3">
-    <nav>
-        <ul>
-            <li id = "n3k1"><a href='#'>Alle BLJ Seiten</a>
-                <ul>
-                    <li><p><a href="http://<?php echo $ipArray[2][0]?><?php echo $ipArray[2][1] ?>">Fynnus Blogus</a></p>
-                    </li>
-                    <li><p><a href="http://<?php echo $ipArray[1][0]?><?php echo $ipArray[1][1] ?>">Carolina's Blog</a></p>
-                    </li>
-                    <li><p><a href="http://<?php echo $ipArray[7][0]?><?php echo $ipArray[7][1] ?>">RBWS</a></p>
-                    </li>
-                    <li><p><a href="http://<?php echo $ipArray[0][0]?><?php echo $ipArray[0][1] ?>">Ein Blog der dein Leben verändert</a></p>
-                    </li>
-                    <li><p><a href="http://<?php echo $ipArray[4][0]?><?php echo $ipArray[4][1] ?>">Jennifers Blog</a></p>
-                    </li>
-                    <li><p><a href="http://<?php echo $ipArray[5][0]?><?php echo $ipArray[5][1] ?>">Timons Blog</a></p>
-                    </li>
-                    <li><p><a href="http://<?php echo $ipArray[6][0]?><?php echo $ipArray[6][1] ?>">Bjoerns Blog</a></p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</div>
+    echo ('<div id = "nav3">
+        <nav>
+            <ul>
+                <li id = "n3k1"><a href=\'#\'>Alle BLJ Seiten</a>
+                    <ul>
+                        <li><p><a href="http://<?php echo $ipArray[2][0]?><?php echo $ipArray[2][1] ?>">Fynnus Blogus</a></p>
+                        </li>
+                        <li><p><a href="http://<?php echo $ipArray[1][0]?><?php echo $ipArray[1][1] ?>">Carolina\'s Blog</a></p>
+                        </li>
+                        <li><p><a href="http://<?php echo $ipArray[7][0]?><?php echo $ipArray[7][1] ?>">RBWS</a></p>
+                        </li>
+                        <li><p><a href="http://<?php echo $ipArray[0][0]?><?php echo $ipArray[0][1] ?>">Ein Blog der dein Leben verändert</a></p>
+                        </li>
+                        <li><p><a href="http://<?php echo $ipArray[4][0]?><?php echo $ipArray[4][1] ?>">Jennifers Blog</a></p>
+                        </li>
+                        <li><p><a href="http://<?php echo $ipArray[5][0]?><?php echo $ipArray[5][1] ?>">Timons Blog</a></p>
+                        </li>
+                        <li><p><a href="http://<?php echo $ipArray[6][0]?><?php echo $ipArray[6][1] ?>">Bjoerns Blog</a></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>');
+
+    } else {
+
+        echo ('<div id = "nav3">
+        <nav>
+            <ul>
+                <li id = "n3k1"><a href=\'#\'>Alle BLJ Seiten</a>
+                    <ul>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                        <li><p><a>----------</a></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>');
+
+    } 
+    ?>
 
     <div id = "beitraege">
     <?php
         $dbConnection = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
         $stmt = $dbConnection->query("SELECT * FROM beitraege ORDER BY ID desc");
         foreach($stmt->fetchAll() as $x) {
-            echo '<div class = "beitraege" id = "bt' . $x["ID"] . '">' . '<p id = "p_username">' . $x["first_name"] . ' ' . $x["last_name"]
-             . ':</p>' . '<p id = "p_time">' . $x["creation_date"] . '</p><hr>' . '<p id = "p_theme">' . $x["theme"] . '</p>' . '<p id = "text">' . $x["text"]
-              . '</p>' . '</div><div id = "bt_bewertung"><p>Bewertung</p></div>';
+            echo '<div class = "beitraege" id = "bt' . $x["ID"] . '">'
+            . '<p id = "p_username">' . $x["first_name"] . ' ' . $x["last_name"] . ':</p>' 
+            . '<p id = "p_time">' . $x["creation_date"] . '</p>
+            <hr>' 
+            . '<p id = "p_theme">' . $x["theme"] . '</p>' 
+            . '<p id = "text">' . $x["text"] . '</p>' 
+            . '</div><div id = "bt_bewertung"><p>Bewertung</p></div>';
         }
     ?>
     </div>
 
-    <form action=""
-
+    <fieldset class="rating">
+    <legend>Please rate:</legend>
+    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+    
+</fieldset>
 </body>
 </html>
