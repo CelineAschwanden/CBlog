@@ -322,6 +322,7 @@ body {
     background-color: #5DA7B6;
     padding: 5px;
     width: 58.2%;
+    height: 120px;
     left: 50%;
     margin-left: -30%;
     border-radius: 0px 0px 20px 20px;
@@ -367,5 +368,15 @@ div.stars {
   }
 
 #stern_bewertung {
-    margin-left: 5px;
+    margin-left: 15px;
+    margin-top: 25px;
+    float: left;
+}
+
+#s_b_button {
+    background-color: #427EFF;
+    border-color: #427EFF;
+    margin-top: 45px;
+    margin-left: 25px;
+    padding: 5px;
 }
