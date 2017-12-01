@@ -50,6 +50,7 @@ $abgeschickt = false;
 </head>
 
 <body>
+
     <h1 id = "title">Beitrag schreiben</h1>
 
     <div id = "nav1">
